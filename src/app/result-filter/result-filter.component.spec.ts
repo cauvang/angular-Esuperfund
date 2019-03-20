@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { ResultFilterComponent } from './result-filter.component';
 import { FormsModule } from '@angular/forms';
@@ -45,11 +45,12 @@ describe('ResultFilterComponent', () => {
 
   //   component.ngOnChanges();
   //   fixture.detectChanges();
+  //   tick();
   //   const checkbox = compiled.querySelector(".filters-item input");
-  //   checkbox.click(); 
   //   checkbox.dispatchEvent(new Event('click'));
+  //   tick();
   //   fixture.detectChanges();
-  //   expect(component.filterChange.emit).toHaveBeenCalledWith(["sdfdf"]);
+  //   expect(component.filterChange.emit).toHaveBeenCalledWith(["aaa"]);
   // })
 
 });
