@@ -1,0 +1,22 @@
+<!-- <app-result-filter [properties]=properties (onFilterChange)="onGenderChange($event)"></app-result-filter> -->
+<div class="row mb-3">
+  <div class="col-2">
+    <app-result-filter [data]=genders title="Genders" (onFilterChange)="onGenderChange($event)"></app-result-filter>
+  </div>
+  <div class="col-3">
+    <app-result-filter [data]=fruits title="Favorite fruits" (onFilterChange)="onFruitChange($event)"></app-result-filter>
+  </div>
+  <div class="col-7">
+    <app-result-filter [data]=colors title="Favorite colors" (onFilterChange)="onColorChange($event)"></app-result-filter>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-7">
+    <app-result-table [data]=filteredData></app-result-table>
+  </div>
+  <div class="col-5">
+    <app-result-chart [barChartLabels]=colors [barChartData]=colorData></app-result-chart>
+    <app-result-chart [barChartLabels]=fruits [barChartData]=fruitData></app-result-chart>
+  </div>
+</div>
