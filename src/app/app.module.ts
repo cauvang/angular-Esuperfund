@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms"
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResultTableComponent } from './result-table/result-table.component';
@@ -10,7 +10,6 @@ import { SurveyService } from './service/survey.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
-import { SortPipe } from './sort.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +17,6 @@ import { SortPipe } from './sort.pipe';
     ResultChartComponent,
     ResultFilterComponent,
     DashboardComponent,
-    SortPipe,
   ],
   imports: [
     BrowserModule,

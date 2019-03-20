@@ -1,22 +1,23 @@
-<!-- <app-result-filter [properties]=properties (onFilterChange)="onGenderChange($event)"></app-result-filter> -->
 <div class="row mb-3">
-  <div class="col-2">
-    <app-result-filter [data]=genders title="Genders" (onFilterChange)="onGenderChange($event)"></app-result-filter>
+  <div class="col-md-2 col-12 col-sm-2">
+    <app-result-filter [data]=genders title="Genders" (filterChange)="onGenderChange($event)" className='genderFilter'></app-result-filter>
   </div>
-  <div class="col-3">
-    <app-result-filter [data]=fruits title="Favorite fruits" (onFilterChange)="onFruitChange($event)"></app-result-filter>
+  <div class="col-md-3 col-12 col-sm-4">
+    <app-result-filter [data]=fruits title="Favorite fruits" (filterChange)="onFruitChange($event)" className='fruitFilter'></app-result-filter>
   </div>
-  <div class="col-7">
-    <app-result-filter [data]=colors title="Favorite colors" (onFilterChange)="onColorChange($event)"></app-result-filter>
+  <div class="col-md-7 col-12 col-sm-6">
+    <app-result-filter [data]=colors title="Favorite colors" (filterChange)="onColorChange($event)" className='colorFilter'></app-result-filter>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-7">
+  <div class="col-lg-7 col-md-12 col-12 col-sm-12">
     <app-result-table [data]=filteredData></app-result-table>
   </div>
-  <div class="col-5">
-    <app-result-chart [barChartLabels]=colors [barChartData]=colorData></app-result-chart>
-    <app-result-chart [barChartLabels]=fruits [barChartData]=fruitData></app-result-chart>
+
+  <div class="col-lg-5  col-md-12 col-12 col-sm-12 mt-3 mt-md-0">
+    <app-result-chart [barChartLabels]=fruitFilters [barChartData]=fruitData title="Gender and Fruits Chart"></app-result-chart>
+
+    <app-result-chart [barChartLabels]=colorFilters [barChartData]=colorData title="Gender and Colors Chart"></app-result-chart>
   </div>
 </div>

@@ -28,18 +28,17 @@ export class SurveyService {
     const hashTable = {};
     data.forEach(element => {
       if (hashTable[element[propertyName]] == null) {
-        if (element['gender'] == genderType)
+        if (element.gender === genderType) {
           hashTable[element[propertyName]] = 1;
-        else
+        } else {
           hashTable[element[propertyName]] = 0;
-      }
-      else {
-        if (element['gender'] == genderType)
+        }
+      } else {
+        if (element.gender === genderType) {
           hashTable[element[propertyName]]++;
+        }
       }
     });
-    // console.log("hash", hashTable);
-    // console.log("value", Object.values(hashTable));
     return Object.values(hashTable);
   }
 }

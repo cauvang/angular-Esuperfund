@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+
 export const Constants = {
-    dataUrl: "http://www.json-generator.com/api/json/get/bVntavxtVe?indent=2",
-}
+    dataUrl: environment.dataUrl
+};

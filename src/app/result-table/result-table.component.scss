@@ -1,11 +1,22 @@
-.bk-cyan {
-  background-color: cyan;
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+@import "../../constants";
+
+.odd-row {
+  background-color: $brand-color-light-blue;
 }
 
 .table-header {
   font-size: 20px !important;
   font-weight: bold;
   color: white;
-  background-color: black;
+  background-color: $brand-color-blue;
   text-align: center;
+
+  @include media-breakpoint-down(sm) {
+    font-size: 14px !important;
+  }
+
+
 }

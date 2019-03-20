@@ -1,11 +1,45 @@
-.width-50 {
-  width: 50%;
-}
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
 
-.width-20 {
-  width: 20%;
-}
+.filters {
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 20px;
+  }
 
-.width-100 {
-  width: 100%;
+  &-item {
+    &-label {
+      margin-left: 5px;
+    }
+  }
+
+  .fruitFilter {
+    width: 50%;
+
+    @include media-breakpoint-between(sm, md) {
+      width: 100%;
+    }
+  }
+
+  .colorFilter {
+    width: 20%;
+
+    @include media-breakpoint-down(sm) {
+      width: 50%;
+    }
+
+    @include media-breakpoint-between(sm, md) {
+      width: 33.33%;
+    }
+
+  }
+
+  .genderFilter {
+    width: 100%;
+
+    @include media-breakpoint-down(sm) {
+      width: 50%;
+    }
+
+  }
 }

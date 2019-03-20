@@ -11,9 +11,10 @@ export class ResultFilterComponent implements OnInit, OnChanges {
   @Input() data: string[];
   @Input() title: string;
 
-  @Output() onFilterChange = new EventEmitter();
+  @Output() filterChange = new EventEmitter();
   listItems: ISelectItem[];
-
+  selectAll: boolean;
+  @Input() className: string;
 
   constructor() {
   }
@@ -27,12 +28,20 @@ export class ResultFilterComponent implements OnInit, OnChanges {
       return;
     }
     this.listItems = this.data.map(name => {
-      return { name, selected: false }
-    })
+      return { name, selected: false };
+    });
+    console.log(this.listItems)
   }
 
   onChange() {
     const filterValues = this.listItems.filter(x => x.selected).map(x => x.name);
-    this.onFilterChange.emit(filterValues);
+    this.filterChange.emit(filterValues);
+  }
+
+  onCheckAll() {
+    this.listItems.forEach(element => {
+      element.selected = this.selectAll;
+    });
+    this.onChange();
   }
 }

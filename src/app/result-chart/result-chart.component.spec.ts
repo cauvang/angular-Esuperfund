@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultChartComponent } from './result-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 describe('ResultChartComponent', () => {
   let component: ResultChartComponent;
@@ -8,9 +9,9 @@ describe('ResultChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultChartComponent ]
+      declarations: [ResultChartComponent], imports: [ChartsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

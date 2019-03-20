@@ -1,39 +1,39 @@
 <div class="row border table-header p-2">
-  <div class="col-2 ">
+  <div class="col-md-2 col-1">
     Index
   </div>
-  <div class="col-2 ">
+  <div class="col-md-2 col-3">
     Name
   </div>
-  <div class="col-2 ">
+  <div class="col-md-2 col-2">
     Gender
   </div>
-  <div class="col-2 ">
+  <div class="col-md-2 col-1">
     Age
   </div>
-  <div class="col-2 ">
+  <div class="col-md-2 col-2">
     Favorite fruit
   </div>
-  <div class="col-2 ">
+  <div class="col-md-2 col-3 ">
     Favorite color
   </div>
 </div>
-<div class="row border-bottom border-right border-left text-center p-2" *ngFor="let item of data;let i=index" [ngClass]="{'bk-cyan': i%2==0}">
-  <div class="col-2">
+<div class="row border-bottom border-right border-left text-center p-2" *ngFor="let item of data;let i=index" [ngClass]="{'odd-row': i%2==0}">
+  <div class="col-md-2 col-1">
     {{item.index}}
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-3">
     {{item.name}}
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-2">
     {{item.gender}}
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-1">
     {{item.age}}
   </div>
-  <div class="col-2">
+  <div class="col-md-2 col-2">
     {{item.favoriteFruit}} </div>
-  <div class="col-2">
+  <div class="col-md-2 col-3">
     {{item.favoriteColor}}
   </div>
 </div>

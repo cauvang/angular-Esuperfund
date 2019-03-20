@@ -1,9 +1,10 @@
-<script src="node_modules/chart.js/dist/chart.js"></script>
-
-<div *ngIf="barChartLabels!=null">
-  <div style="display: block">
-    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-      [chartType]="barChartType">
-    </canvas>
+<div class="filters">
+  <h2>{{title}}</h2>
+  <div *ngIf="barChartLabels!=null">
+    <div class="d-block">
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
   </div>
 </div>
