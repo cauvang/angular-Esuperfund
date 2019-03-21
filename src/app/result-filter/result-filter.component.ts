@@ -10,18 +10,15 @@ import { ISelectItem } from '../model/survey';
 export class ResultFilterComponent implements OnInit, OnChanges {
   @Input() data: string[];
   @Input() title: string;
-
+  @Input() className: string;
   @Output() filterChange = new EventEmitter();
+
   listItems: ISelectItem[];
   selectAll: boolean;
-  @Input() className: string;
 
-  constructor() {
-  }
+  constructor() { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   ngOnChanges() {
     if (!this.data) {

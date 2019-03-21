@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination/ngx-bootstrap-pagination';
 
-import { ISurveyItem } from '../model/survey';
+import { ISurveyItem, ISelectItem } from '../model/survey';
 import { SurveyService } from '../service/survey.service';
 import { Constants } from '../constant';
 
@@ -20,60 +20,83 @@ export class DashboardComponent implements OnInit {
   public colors: string[];
 
 
-  public genderFilters: string[];
-  public fruitFilters: string[];
-  public colorFilters: string[];
+  private filteredGenders: string[];
+  private filteredFruits: string[];
+  private filteredColors: string[];
   public colorData = [];
   public fruitData = [];
+  public chartFruits: string[];
+  public chartColors: string[];
 
-
-  returnedData: ISurveyItem[];
+  numberOfPages = 10;
+  pageData: ISurveyItem[];
   currentPage = 1;
   page: number;
-  totalItems = 500;
+  totalItems = 0;
   itemsPerPage = Constants.itemsPerPage;
+
+  public loading = true;
+  public hasError = false;
 
   constructor(private service: SurveyService) {
   }
 
+  onDataLoadSuccess(data: ISurveyItem[]) {
+    this.data = data;
+    this.filteredData = data;
+
+    this.genders = this.service.getUniqueValues(data, 'gender');
+    this.colors = this.service.getUniqueValues(data, 'favoriteColor');
+    this.fruits = this.service.getUniqueValues(data, 'favoriteFruit');
+
+    this.filteredGenders = this.genders;
+    this.filteredColors = this.colors;
+    this.filteredFruits = this.fruits;
+
+    this.chartColors = this.colors;
+    this.chartFruits = this.fruits;
+
+    this.colorData = [
+      { data: this.service.getValuesByGender(data, 'favoriteColor', 'female'), label: 'Female' },
+      { data: this.service.getValuesByGender(data, 'favoriteColor', 'male'), label: 'Male' }
+    ];
+    this.fruitData = [
+      { data: this.service.getValuesByGender(data, 'favoriteFruit', 'female'), label: 'Female' },
+      { data: this.service.getValuesByGender(data, 'favoriteFruit', 'male'), label: 'Male' }
+    ];
+    this.pageData = this.filteredData.slice(0, this.itemsPerPage);
+    this.totalItems = this.filteredData.length;
+
+    this.loading = false;
+
+  }
+  onDataLoadError(err) {
+    this.loading = false;
+    this.hasError = true;
+  }
+
+  loadData() {
+    this.loading = true;
+    this.hasError = false;
+    this.service.getSurveyInfo().subscribe(data => this.onDataLoadSuccess(data), error => this.onDataLoadError(error));
+
+  }
+
   ngOnInit() {
-    this.service.getSurveyInfo().subscribe((data) => {
-      this.data = data;
-      this.filteredData = data;
-
-      this.genders = this.service.getUniqueValues(data, 'gender');
-      this.colors = this.service.getUniqueValues(data, 'favoriteColor');
-      this.fruits = this.service.getUniqueValues(data, 'favoriteFruit');
-
-      this.genderFilters = this.genders;
-      this.colorFilters = this.colors;
-      this.fruitFilters = this.fruits;
-
-      this.colorData = [
-        { data: this.service.getValuesByGender(data, 'favoriteColor', 'female'), label: 'Female' },
-        { data: this.service.getValuesByGender(data, 'favoriteColor', 'male'), label: 'Male' }
-      ];
-      this.fruitData = [
-        { data: this.service.getValuesByGender(data, 'favoriteFruit', 'female'), label: 'Female' },
-        { data: this.service.getValuesByGender(data, 'favoriteFruit', 'male'), label: 'Male' }
-      ];
-      this.returnedData = this.filteredData.slice(0, this.itemsPerPage);
-      this.totalItems = this.filteredData.length;
-    });
-
+    this.loadData();
   }
 
 
   onGenderChange(filterValue: string[]) {
-    this.genderFilters = filterValue.length === 0 ? this.genders : filterValue;
+    this.filteredGenders = filterValue.length === 0 ? this.genders : filterValue;
     this.applyFilters();
   }
   onFruitChange(filterValue: string[]) {
-    this.fruitFilters = filterValue.length === 0 ? this.fruits : filterValue;
+    this.filteredFruits = filterValue.length === 0 ? this.fruits : filterValue;
     this.applyFilters();
   }
   onColorChange(filterValue: string[]) {
-    this.colorFilters = filterValue.length === 0 ? this.colors : filterValue;
+    this.filteredColors = filterValue.length === 0 ? this.colors : filterValue;
     this.applyFilters();
   }
 
@@ -84,24 +107,20 @@ export class DashboardComponent implements OnInit {
 
   refreshData() {
     this.filteredData = this.data.filter(item => {
-      return this.genderFilters.indexOf(item.gender) >= 0;
+      return this.filteredGenders.includes(item.gender)
+        && this.filteredFruits.includes(item.favoriteFruit)
+        && this.filteredColors.includes(item.favoriteColor);
     });
 
-    this.filteredData = this.filteredData.filter(item => {
-      return this.fruitFilters.indexOf(item.favoriteFruit) >= 0;
-    });
 
-    this.filteredData = this.filteredData.filter(item => {
-      return this.colorFilters.indexOf(item.favoriteColor) >= 0;
-    });
 
     this.totalItems = this.filteredData.length;
-    this.returnedData = this.filteredData.slice(0, this.itemsPerPage);
+    this.pageData = this.filteredData.slice(0, this.itemsPerPage);
   }
 
   refreshChart() {
-    this.colorFilters = this.service.getUniqueValues(this.filteredData, 'favoriteColor');
-    this.fruitFilters = this.service.getUniqueValues(this.filteredData, 'favoriteFruit');
+    this.chartColors = this.service.getUniqueValues(this.filteredData, 'favoriteColor');
+    this.chartFruits = this.service.getUniqueValues(this.filteredData, 'favoriteFruit');
 
     this.colorData = [
       { data: this.service.getValuesByGender(this.filteredData, 'favoriteColor', 'female'), label: 'Female' },
@@ -115,7 +134,8 @@ export class DashboardComponent implements OnInit {
 
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
-    const endItem = event.page * event.itemsPerPage
-    this.returnedData = this.filteredData.slice(startItem, endItem);
+    const endItem = event.page * event.itemsPerPage;
+    this.pageData = this.filteredData.slice(startItem, endItem);
   }
+
 }

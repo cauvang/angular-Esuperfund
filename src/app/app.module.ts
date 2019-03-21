@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PaginationModule, AlertModule } from 'ngx-bootstrap';
+import { NgxLoadingModule } from 'ngx-loading';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +29,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     FormsModule,
     ChartsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
+    AlertModule.forRoot()
   ],
   providers: [SurveyService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 <div class="filters mt-5">
-  <h4 class="text-center">{{title}}</h4>
+  <h4 class="chart-name text-center">{{title}}</h4>
   <div *ngIf="barChartLabels!=null">
     <div class="d-block">
       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"

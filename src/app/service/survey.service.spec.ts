@@ -11,6 +11,7 @@ describe('SurveyService tests', () => {
     const service: SurveyService = TestBed.get(SurveyService);
     expect(service).toBeTruthy();
   });
+
   it('getSurveyInfo() should be return data', () => {
     const service: SurveyService = TestBed.get(SurveyService);
     service.getSurveyInfo().subscribe((data) => {
@@ -24,36 +25,78 @@ describe('SurveyService tests', () => {
   it('getUniqueValues should return unique values', () => {
     const service: SurveyService = TestBed.get(SurveyService);
     const data = [{
-      "_id": "5c90d1720285fe32952dc0ba",
-      "index": 0,
-      "age": 49,
-      "name": "Sophie",
-      "gender": "female",
-      "favoriteFruit": "banana",
-      "favoriteColor": "red"
+      '_id': '5c90d1720285fe32952dc0ba',
+      'index': 0,
+      'age': 49,
+      'name': 'Sophie',
+      'gender': 'female',
+      'favoriteFruit': 'banana',
+      'favoriteColor': 'red'
     },
     {
-      "_id": "5c90d1722041e7a06aafcb95",
-      "index": 1,
-      "age": 41,
-      "name": "Ada",
-      "gender": "female",
-      "favoriteFruit": "mango",
-      "favoriteColor": "goldenrod"
+      '_id': '5c90d1722041e7a06aafcb95',
+      'index': 1,
+      'age': 41,
+      'name': 'Ada',
+      'gender': 'female',
+      'favoriteFruit': 'mango',
+      'favoriteColor': 'goldenrod'
     },
     {
-      "_id": "5c90d17291ae9607691641ee",
-      "index": 2,
-      "age": 59,
-      "name": "Jeri",
-      "gender": "female",
-      "favoriteFruit": "banana",
-      "favoriteColor": "aquamarine"
-    }]
-    const values = service.getUniqueValues(data, "favoriteFruit")
-    expect(values.length).toBe(2);
-    expect(values[0]).toBe("banana")
-    expect(values[1]).toBe("mango")
-  })
+      '_id': '5c90d17291ae9607691641ee',
+      'index': 2,
+      'age': 59,
+      'name': 'Jeri',
+      'gender': 'female',
+      'favoriteFruit': 'banana',
+      'favoriteColor': 'aquamarine'
+    }];
 
+    const values = service.getUniqueValues(data, 'favoriteFruit');
+    expect(values.length).toBe(2);
+    expect(values[0]).toBe('banana');
+    expect(values[1]).toBe('mango');
+  });
+
+  it('getValuesByGender should return number values by gender', () => {
+    const service: SurveyService = TestBed.get(SurveyService);
+    const data = [{
+      '_id': '5c90d1720285fe32952dc0ba',
+      'index': 0,
+      'age': 49,
+      'name': 'Sophie',
+      'gender': 'female',
+      'favoriteFruit': 'banana',
+      'favoriteColor': 'red'
+    },
+    {
+      '_id': '5c90d1722041e7a06aafcb95',
+      'index': 1,
+      'age': 41,
+      'name': 'Ada',
+      'gender': 'female',
+      'favoriteFruit': 'mango',
+      'favoriteColor': 'goldenrod'
+    },
+    {
+      '_id': '5c90d172b1eea8ebd949b1a8',
+      'index': 77,
+      'age': 47,
+      'name': 'Aguilar',
+      'gender': 'male',
+      'favoriteFruit': 'banana',
+      'favoriteColor': 'honeydew'
+    }];
+
+    let values = service.getValuesByGender(data, 'favoriteFruit', 'female');
+    expect(values.length).toBe(2);
+    expect(values[0]).toBe(1);
+    expect(values[1]).toBe(1);
+
+    values = service.getValuesByGender(data, 'favoriteFruit', 'male');
+    expect(values.length).toBe(2);
+    expect(values[0]).toBe(1);
+    expect(values[1]).toBe(0);
+
+  });
 });
