@@ -24,7 +24,7 @@ export class SurveyService {
     return Object.keys(hashTable);
   }
 
-  public getValues(data: ISurveyItem[], propertyName: string, genderType: string) {
+  public getValuesByGender(data: ISurveyItem[], propertyName: string, genderType: string) {
     const hashTable = {};
     data.forEach(element => {
       if (hashTable[element[propertyName]] == null) {
@@ -40,5 +40,6 @@ export class SurveyService {
       }
     });
     return Object.values(hashTable);
+
   }
 }

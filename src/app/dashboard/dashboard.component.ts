@@ -50,12 +50,12 @@ export class DashboardComponent implements OnInit {
       this.fruitFilters = this.fruits;
 
       this.colorData = [
-        { data: this.service.getValues(data, 'favoriteColor', 'female'), label: 'Female' },
-        { data: this.service.getValues(data, 'favoriteColor', 'male'), label: 'Male' }
+        { data: this.service.getValuesByGender(data, 'favoriteColor', 'female'), label: 'Female' },
+        { data: this.service.getValuesByGender(data, 'favoriteColor', 'male'), label: 'Male' }
       ];
       this.fruitData = [
-        { data: this.service.getValues(data, 'favoriteFruit', 'female'), label: 'Female' },
-        { data: this.service.getValues(data, 'favoriteFruit', 'male'), label: 'Male' }
+        { data: this.service.getValuesByGender(data, 'favoriteFruit', 'female'), label: 'Female' },
+        { data: this.service.getValuesByGender(data, 'favoriteFruit', 'male'), label: 'Male' }
       ];
       this.returnedData = this.filteredData.slice(0, this.itemsPerPage);
       this.totalItems = this.filteredData.length;
@@ -97,17 +97,19 @@ export class DashboardComponent implements OnInit {
 
     this.totalItems = this.filteredData.length;
     this.returnedData = this.filteredData.slice(0, this.itemsPerPage);
-    console.log(this.filteredData);
   }
 
   refreshChart() {
+    this.colorFilters = this.service.getUniqueValues(this.filteredData, 'favoriteColor');
+    this.fruitFilters = this.service.getUniqueValues(this.filteredData, 'favoriteFruit');
+
     this.colorData = [
-      { data: this.service.getValues(this.filteredData, 'favoriteColor', 'female'), label: 'Female' },
-      { data: this.service.getValues(this.filteredData, 'favoriteColor', 'male'), label: 'Male' }
+      { data: this.service.getValuesByGender(this.filteredData, 'favoriteColor', 'female'), label: 'Female' },
+      { data: this.service.getValuesByGender(this.filteredData, 'favoriteColor', 'male'), label: 'Male' }
     ];
     this.fruitData = [
-      { data: this.service.getValues(this.filteredData, 'favoriteFruit', 'female'), label: 'Female' },
-      { data: this.service.getValues(this.filteredData, 'favoriteFruit', 'male'), label: 'Male' }
+      { data: this.service.getValuesByGender(this.filteredData, 'favoriteFruit', 'female'), label: 'Female' },
+      { data: this.service.getValuesByGender(this.filteredData, 'favoriteFruit', 'male'), label: 'Male' }
     ];
   }
 

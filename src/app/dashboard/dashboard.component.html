@@ -1,12 +1,15 @@
 <div class="row mb-3">
   <div class="col-md-2 col-12 col-sm-2">
-    <app-result-filter [data]=genders title="Genders" (filterChange)="onGenderChange($event)" className='genderFilter'></app-result-filter>
+    <app-result-filter [data]=genders title="Genders" (filterChange)="onGenderChange($event)" className='genderFilter'>
+    </app-result-filter>
   </div>
   <div class="col-md-3 col-12 col-sm-4">
-    <app-result-filter [data]=fruits title="Favorite fruits" (filterChange)="onFruitChange($event)" className='fruitFilter'></app-result-filter>
+    <app-result-filter [data]=fruits title="Favorite fruits" (filterChange)="onFruitChange($event)"
+      className='fruitFilter'></app-result-filter>
   </div>
   <div class="col-md-7 col-12 col-sm-6">
-    <app-result-filter [data]=colors title="Favorite colors" (filterChange)="onColorChange($event)" className='colorFilter'></app-result-filter>
+    <app-result-filter [data]=colors title="Favorite colors" (filterChange)="onColorChange($event)"
+      className='colorFilter'></app-result-filter>
   </div>
 </div>
 
@@ -14,13 +17,15 @@
   <div class="col-lg-7 col-md-12 col-12 col-sm-12 ">
     <app-result-table [data]=returnedData></app-result-table>
 
-    <pagination class="mt-3" [totalItems]=totalItems [(ngModel)]="currentPage" [maxSize]=5 [itemsPerPage]=itemsPerPage
-      (numPages)="smallnumPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+    <pagination class="mt-3 " [totalItems]=totalItems [(ngModel)]="currentPage" [maxSize]=5 [itemsPerPage]=itemsPerPage
+      (pageChanged)="pageChanged($event)"></pagination>
   </div>
 
   <div class="col-lg-5  col-md-12 col-12 col-sm-12 mt-3 mt-md-0">
-    <app-result-chart [barChartLabels]=fruitFilters [barChartData]=fruitData title="Gender and Fruits Chart"></app-result-chart>
+    <app-result-chart [barChartLabels]=fruitFilters [barChartData]=fruitData title="Gender and Fruits Chart">
+    </app-result-chart>
 
-    <app-result-chart [barChartLabels]=colorFilters [barChartData]=colorData title="Gender and Colors Chart"></app-result-chart>
+    <app-result-chart [barChartLabels]=colorFilters [barChartData]=colorData title="Gender and Colors Chart">
+    </app-result-chart>
   </div>
 </div>

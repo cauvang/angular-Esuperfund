@@ -18,7 +18,26 @@ export class ResultChartComponent implements OnInit {
 
   public barChartOptions = {
     scaleShowVerticalLines: true,
-    responsive: true
+    responsive: true,
+    legend: {
+      position: 'bottom',
+  },
+  scales: {
+    xAxes: [{
+            display: true,
+            scaleLabel: {
+                display: true,
+            }
+        }],
+    yAxes: [{
+            display: true,
+            ticks: {
+                beginAtZero: true,
+                steps: 10,
+                stepValue: 5                
+            }
+        }]
+},
   };
 
   public barChartType = 'bar';
