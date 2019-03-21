@@ -17,7 +17,7 @@ export class ResultChartComponent implements OnInit {
   @Input() title: string;
 
   public barChartOptions = {
-    scaleShowVerticalLines: false,
+    scaleShowVerticalLines: true,
     responsive: true
   };
 

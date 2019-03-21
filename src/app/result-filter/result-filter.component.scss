@@ -7,10 +7,8 @@
     padding-bottom: 20px;
   }
 
-  &-item {
-    &-label {
-      margin-left: 5px;
-    }
+  &-name {
+    margin-left: 5px;
   }
 
   .fruitFilter {
@@ -24,11 +22,7 @@
   .colorFilter {
     width: 20%;
 
-    @include media-breakpoint-down(sm) {
-      width: 50%;
-    }
-
-    @include media-breakpoint-between(sm, md) {
+    @include media-breakpoint-down(md) {
       width: 33.33%;
     }
 

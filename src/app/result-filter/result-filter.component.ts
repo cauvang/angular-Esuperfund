@@ -30,7 +30,6 @@ export class ResultFilterComponent implements OnInit, OnChanges {
     this.listItems = this.data.map(name => {
       return { name, selected: false };
     });
-    console.log(this.listItems)
   }
 
   onChange() {

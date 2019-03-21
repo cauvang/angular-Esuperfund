@@ -1,4 +1,4 @@
-<div class="row border table-header p-2">
+<div class="row border table-header pt-2 pb-2">
   <div class="col-md-2 col-1">
     Index
   </div>
@@ -18,7 +18,8 @@
     Favorite color
   </div>
 </div>
-<div class="row border-bottom border-right border-left text-center p-2" *ngFor="let item of data;let i=index" [ngClass]="{'odd-row': i%2==0}">
+<div class="row border-bottom border-right border-left text-center pt-2 pb-2" *ngFor="let item of data;let i=index"
+  [ngClass]="{'odd-row': i%2==0}">
   <div class="col-md-2 col-1">
     {{item.index}}
   </div>
