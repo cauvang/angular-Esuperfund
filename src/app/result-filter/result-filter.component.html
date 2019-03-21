@@ -4,7 +4,7 @@
     <span class="filters-name">{{title}}</span>
   </div>
   <div class="d-flex flex-wrap flex-row">
-    <div *ngFor="let item of listItems" class="{{className}}  ">
+    <div *ngFor="let item of listItems" class="{{className}} filters-item ">
       <input type="checkbox" [(ngModel)]="item.selected" (change)="onChange()">
       <span class="filters-name">{{item.name}}</span>
     </div>

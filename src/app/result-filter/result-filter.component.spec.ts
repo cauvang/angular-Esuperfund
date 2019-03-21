@@ -28,9 +28,10 @@ describe('ResultFilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should render title as "test filter"', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.filter-name').textContent).toContain('test filter');
+    expect(compiled.querySelector('.filters-name').textContent).toContain('test filter');
   })
 
   it('should render 2 checkbox', () => {
